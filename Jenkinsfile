@@ -31,7 +31,7 @@ pipeline {
                     go build -mod vendor -v
                     """
                 }
-                container('busybox') {
+                container('golang') {
                     sh """
                     echo ChenJuan!
                     """
