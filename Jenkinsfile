@@ -31,6 +31,11 @@ pipeline {
                     go build -mod vendor -v
                     """
                 }
+                container('busybox') {
+                    sh """
+                    echo ChenJuan!
+                    """
+                }
             }
         }
 
@@ -57,5 +62,15 @@ pipeline {
             }
         }
 
+        stage('Test') {
+            when {
+              not { branch "master" }
+            }
+            steps {
+                container("busybox") {
+                    sh "./validate.sh"
+                }
+            }
+        }
     }
 }
