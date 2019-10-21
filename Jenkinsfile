@@ -19,6 +19,11 @@ pipeline {
                 command:
                 - cat
                 tty: true
+              - name: debian
+                image: debian
+                command:
+                - cat
+                tty: true
             """
         }
     }
@@ -31,7 +36,7 @@ pipeline {
                     go build -mod vendor -v
                     """
                 }
-                container('golang') {
+                container('debian') {
                     sh """
                     echo ChenJuan!
                     """
